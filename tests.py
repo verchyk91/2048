@@ -1,6 +1,6 @@
 import unittest
 from logics import get_number_from_index, get_index_from_number, get_empty_list, is_zero_in_mas
-from logics import move_left, move_up, move_down, can_move
+from logics import move_left, move_up, move_down, can_move, move_right
 
 
 class Test_2048(unittest.TestCase):
@@ -94,7 +94,7 @@ class Test_2048(unittest.TestCase):
             [0, 0, 0, 0],
             [0, 0, 0, 0],
         ]
-        self.assertEqual(move_left(mas), rez)
+        self.assertEqual(move_left(mas), (rez, 12))
 
     def test_13(self):
         a = []
@@ -110,9 +110,41 @@ class Test_2048(unittest.TestCase):
             [0, 0, 0, 0],
             [16, 8, 0, 0],
         ]
-        self.assertEqual(move_left(mas), rez)
+        self.assertEqual(move_left(mas), (rez, 32))
 
     def test_14(self):
+        a = []
+        mas = [
+            [2, 2, 0, 0],
+            [0, 4, 4, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+        ]
+        rez = [
+            [0, 0, 0, 4],
+            [0, 0, 0, 8],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+        ]
+        self.assertEqual(move_right(mas), (rez, 12))
+
+    def test_15(self):
+        a = []
+        mas = [
+            [2, 4, 4, 2],
+            [4, 0, 0, 2],
+            [0, 0, 0, 0],
+            [8, 8, 4, 4],
+        ]
+        rez = [
+            [0, 2, 8, 2],
+            [0, 0, 4, 2],
+            [0, 0, 0, 0],
+            [0, 0, 16, 8],
+        ]
+        self.assertEqual(move_right(mas), (rez, 32))
+
+    def test_16(self):
         mas = [
             [2, 4, 0, 2],
             [2, 0, 2, 0],
@@ -127,7 +159,7 @@ class Test_2048(unittest.TestCase):
         ]
         self.assertEqual(move_up(mas), rez)
 
-    def test_15(self):
+    def test_17(self):
         mas = [
             [2, 4, 0, 2],
             [2, 0, 2, 0],
@@ -142,7 +174,7 @@ class Test_2048(unittest.TestCase):
         ]
         self.assertEqual(move_down(mas), rez)
 
-    def test_16(self):
+    def test_18(self):
         mas = [
             [2, 4, 0, 2],
             [2, 0, 2, 0],
@@ -151,7 +183,7 @@ class Test_2048(unittest.TestCase):
         ]
         self.assertEqual(can_move(mas), True)
 
-    def test_17(self):
+    def test_19(self):
         mas = [
             [2, 4, 8, 2],
             [9, 7, 11, 12],

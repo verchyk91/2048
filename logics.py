@@ -44,6 +44,7 @@ def insert_2_or_4(mas, x, y):
 
 
 def move_left(mas):
+    delta = 0
     for row in mas:
         while 0 in row:
             row.remove(0)
@@ -53,12 +54,14 @@ def move_left(mas):
         for j in range(3):
             if mas[i][j] == mas[i][j + 1] and mas[i][j] != 0:
                 mas[i][j] *= 2
+                delta += mas[i][j]
                 mas[i].pop(j + 1)
                 mas[i].append(0)
-    return mas
+    return mas, delta
 
 
 def move_right(mas):
+    delta = 0
     for row in mas:
         while 0 in row:
             row.remove(0)
@@ -68,9 +71,10 @@ def move_right(mas):
         for j in range(3, 0, -1):
             if mas[i][j] == mas[i][j - 1] and mas[i][j] != 0:
                 mas[i][j] *= 2
+                delta += mas[i][j]
                 mas[i].pop(j - 1)
                 mas[i].insert(0, 0)
-    return mas
+    return mas, delta
 
 
 def move_up(mas):
@@ -112,6 +116,6 @@ def move_down(mas):
 def can_move(mas):
     for i in range(3):
         for j in range(3):
-            if mas[i][j] == mas[i][j + 1] or mas[i][j]  == mas[i + 1][j]:
+            if mas[i][j] == mas[i][j + 1] or mas[i][j] == mas[i + 1][j]:
                 return True
     return False
